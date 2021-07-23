@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const cors = require("cors");
 
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -17,6 +18,8 @@ mongoose
   })
   .then(() => console.log("✅  MongoDB Connected!!!"))
   .catch((err) => console.log(err));
+
+app.use(cors());
 
 app.get("/", (req, res) => res.send("잘되는건가??"));
 app.get("/api/hello", (req, res) => res.send("되는거니??"));
@@ -35,9 +38,10 @@ app.use("/uploads", express.static("uploads"));
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {
   // Set static folder
+  // All the javascript and css files will be read and served from this folder
   app.use(express.static("client/build"));
 
-  // index.html for all page routes
+  // index.html for all page routes    html or routing and naviagtion
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
   });
