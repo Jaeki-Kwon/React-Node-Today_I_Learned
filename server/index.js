@@ -21,9 +21,6 @@ mongoose
 
 app.use(cors());
 
-app.get("/", (req, res) => res.send("잘되는건가??"));
-app.get("/api/hello", (req, res) => res.send("되는거니??"));
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
