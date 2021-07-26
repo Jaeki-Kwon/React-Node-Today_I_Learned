@@ -53,14 +53,16 @@ router.post("/deleteBoard", (req, res) => {
 
 router.post("/updateBoard", (req, res) => {
   const {
-    body: { title, content },
+    body: { boardId, title, content },
   } = req;
   console.log("title", title);
   console.log("content", content);
-  Board.findOneAndUpdate({ title, content }).exec((err, user) => {
-    if (err) return res.status(400).send(err);
-    return res.status(200).json({ success: true, user });
-  });
+  Board.findOneAndUpdate({ _id: boardId }, { title, content }).exec(
+    (err, user) => {
+      if (err) return res.status(400).send(err);
+      return res.status(200).json({ success: true, user });
+    }
+  );
 });
 
 module.exports = router;

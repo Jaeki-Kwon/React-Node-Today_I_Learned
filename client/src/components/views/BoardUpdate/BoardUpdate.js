@@ -36,6 +36,7 @@ function BoardUpdate(props) {
     console.log("Text", text);
 
     let body = {
+      boardId: boardId,
       title: Title,
       content: text,
     };
