@@ -11,7 +11,7 @@ router.post("/write", (req, res) => {
   });
 });
 
-router.get("/getBoardList", async (req, res) => {
+router.get("/getBoardList", (req, res) => {
   // try {
   //   const _id = req.body._id;
   //   const board = await Board.find({ writer: _id }, null, {
@@ -31,7 +31,7 @@ router.get("/getBoardList", async (req, res) => {
 });
 
 router.post("/getBoardDetail", (req, res) => {
-  // console.log(req.body.boardId);
+  console.log(req.body.boardId);
   Board.findOne({ _id: req.body.boardId })
     .populate("writer")
     .exec((err, boardDetail) => {
@@ -41,7 +41,7 @@ router.post("/getBoardDetail", (req, res) => {
 });
 
 router.post("/deleteBoard", (req, res) => {
-  console.log(req.body);
+  console.log("asdf : ", req.body);
   console.log(req.body._id);
   Board.findOneAndDelete({
     boardId: req.body.boardId,

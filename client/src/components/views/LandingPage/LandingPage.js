@@ -22,7 +22,7 @@ function LandingPage() {
 
   const getBoardList = () => {
     axios.get("/api/board/getBoardList").then((response) => {
-      // console.log("ID : ", response.data.board[0].writer.email);
+      console.log("ID : ", response.data.board);
 
       if (response.data.board.length > 0) {
         setBoardList(response.data.board);
@@ -36,7 +36,10 @@ function LandingPage() {
     getBoardList();
   }, []);
 
+  console.log("User : ", user);
+
   const board = BoardList.map((item, index) => {
+    console.log("item : ", item);
     if (user.userData.email === item.writer.email) {
       return (
         <tr key={index}>

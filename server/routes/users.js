@@ -32,6 +32,8 @@ router.post("/login", (req, res) => {
         });
 
       user.generateToken((err, user) => {
+        console.log("User : ", user);
+
         if (err) return res.status(400).send(err);
 
         // 토큰 쿠키에 저장하기

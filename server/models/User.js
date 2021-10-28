@@ -33,7 +33,7 @@ userSchema.pre("save", function (next) {
   let user = this;
   console.log("user", user);
 
-  // emal이란 name 을 바꿀 때 말고 비번을 바꿀 때만 사용하기 위한 조건식
+  // emal이랑 name 을 바꿀 때 말고 비번을 바꿀 때만 사용하기 위한 조건식
   if (user.isModified("password")) {
     bcrypt.genSalt(saltRounds, function (err, salt) {
       if (err) return next(err);
@@ -68,6 +68,7 @@ userSchema.methods.generateToken = function (cb) {
   let token = jwt.sign(user._id.toHexString(), "secretToken");
 
   user.token = token;
+  console.log("Token : ", token);
   user.save(function (err, user) {
     if (err) return cb(err);
     cb(null, user);

@@ -9,8 +9,13 @@ let auth = (req, res, next) => {
     if (err) throw err;
     if (!user) return res.json({ isAuth: false, error: true });
 
+    console.log("User ~~~~~~ : ", user);
+
     req.token = token;
     req.user = user;
+
+    // console.log("req.user : ", req.user);
+    // console.log("User : ", user);
     next();
   });
 };
